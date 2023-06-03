@@ -1,0 +1,58 @@
+@contentType = application/json
+@token = Bearer {{login.response.body.token}}
+
+###
+# @name login
+POST http://localhost:3333/login
+Content-Type: {{contentType}}
+
+{
+    "email": "teste@teste.com",
+    "pass": "senha123"
+}
+###
+# @name add_user
+POST http://localhost:3333/users
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "name": "eux",
+    "email": "eux@eu.com"
+}
+###
+# @name get_user
+GET http://localhost:3333/users
+Content-Type: {{contentType}}
+
+###
+# @name find_user
+GET http://localhost:3333/users?search=eux
+Content-Type: {{contentType}}
+
+###
+# @name update_user
+PUT http://localhost:3333/users/{{get_user.response.body.$[0].id}}
+
+{
+    "name":"novo_nome",
+    "email":"ok@ok.com"
+}
+###
+# @name delete_user
+DELETE http://localhost:3333/users/{{get_user.response.body.$[0].id}}
+
+########
+
+#@token = aaa
+#@token2 = {{login.response.body.$.token}}
+
+
+
+############
+
+GET https://localhost:7287/api/queries/product?Id=1
+x-correlation-id: 3fa85f64-5717-4562-b3fc-2c963f66afaa
+###
+GET https://localhost:7075/example/test?isHappy=true
+x-correlation-id: 0a20f227-7e2f-4f6f-8313-42bb46ae7df6
