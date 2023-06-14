@@ -1,0 +1,41 @@
+@contentType = application/json
+
+###
+
+# @name get_tasks
+GET http://localhost:3333/tasks
+Content-Type: {{contentType}}
+
+###
+
+# @name add_task
+POST http://localhost:3333/tasks
+Content-Type: {{contentType}}
+
+{
+    "title": "task {{$randomInt 0 100}}",
+    "description": "description task {{$timestamp}}"
+}
+
+###
+
+# @name edit_task
+PUT http://localhost:3333/tasks/{{get_tasks.response.body.$[0].id}}
+Content-Type: {{contentType}}
+
+{
+    "title": "task {{$randomInt 0 100}}",
+    "description": "description task {{$timestamp}}"
+}
+
+###
+
+# @name delete_task
+DELETE http://localhost:3333/tasks/{{get_tasks.response.body.$[0].id}}
+Content-Type: {{contentType}}
+
+###
+
+# @name complete_task
+PATCH http://localhost:3333/tasks/{{get_tasks.response.body.$[0].id}}
+Content-Type: {{contentType}}
