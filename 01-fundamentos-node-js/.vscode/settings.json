@@ -1,0 +1,19 @@
+{
+  "editor.defaultFormatter": "vscode.json-language-features",
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rome.rome"
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rome.rome"
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rome.rome"
+  },
+  "editor.codeActionsOnSave": {
+    "quickfix.rome": true,
+    "source.organizeImports.rome": true
+  }
+}

@@ -1,1 +1,14 @@
-{"users":[{"id":"b0dd83a2-cda7-4671-adf1-a7eb3a623f0a","name":"novo_nome","email":"ok@ok.com"},{"id":"504e8868-6d5d-453c-bbe5-6b23e937bc6a","name":"eux","email":"eux@eu.com"}]}
+{
+  "users": [
+    {
+      "id": "b0dd83a2-cda7-4671-adf1-a7eb3a623f0a",
+      "name": "novo_nome",
+      "email": "ok@ok.com"
+    },
+    {
+      "id": "504e8868-6d5d-453c-bbe5-6b23e937bc6a",
+      "name": "eux",
+      "email": "eux@eu.com"
+    }
+  ]
+}
