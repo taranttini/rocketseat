@@ -1,26 +1,28 @@
+@URL = http://localhost:3333
+@URL = http://localhost:3001
 ###
 
-GET http://localhost:3333/healthz
+GET {{URL}}/healthz
 Content-Type: application/json
 
 ###
 
-GET http://localhost:3333/transactions
+GET {{URL}}/transactions
 Content-Type: application/json
 
 ###
 
-GET http://localhost:3333/transactions/77eca52e-81e4-4f1b-9ad6-4b88d5bd08da
+GET {{URL}}/transactions/77eca52e-81e4-4f1b-9ad6-4b88d5bd08da
 Content-Type: application/json
 
 ###
 
-GET http://localhost:3333/transactions/summary 
+GET {{URL}}/transactions/summary 
 Cookie: sessionId=bba98d32-cbf4-4159-9226-5e9e525187d4
 
 ###
 
-curl "http://localhost:3333/transactions/summary" \
+curl "{{URL}}/transactions/summary" \
     -H "Cookie: sessionId=bba98d32-cbf4-4159-9226-5e9e525187d4" \
     -H "Content-Type: application/json" \
     -H "Connection: keep-alive" \
@@ -28,7 +30,7 @@ curl "http://localhost:3333/transactions/summary" \
 
 ###
 
-POST http://localhost:3333/transactions
+POST {{URL}}/transactions
 Content-Type: application/json
 
 {

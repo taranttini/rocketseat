@@ -41,6 +41,12 @@ ferramenta de deploy (free para exemplos)
 
 npm install && npm run knex -- migrate:latest && npm run build
 
+cd 02-criando-api-rest-com-node-js && npm install && npm run knex -- migrate:latest && npm run build
+
 **Start Command**
 
 node build/server.js
+
+Selecionar Advanced
+
+Adicionar variável de ambiente
