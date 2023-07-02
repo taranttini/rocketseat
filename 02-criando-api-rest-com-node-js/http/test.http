@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:3333/ready
+GET http://localhost:3333/healthz
 Content-Type: application/json
 
 ###

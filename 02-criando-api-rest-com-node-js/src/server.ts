@@ -1,7 +1,7 @@
 import { app } from "./app";
 import { env } from "./env";
 
-app.get("/ready", async (request, reply) => {
+app.get("/healthz", async (request, reply) => {
   reply.send("ok");
 });
 
