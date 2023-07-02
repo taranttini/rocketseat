@@ -31,3 +31,16 @@ npx vitest
 ## tsup 
 
 ferramenta para fazer o build rápido do sistema
+
+
+## render
+
+ferramenta de deploy (free para exemplos)
+
+**Build Command**
+
+npm install && npm run knex -- migrate:latest && npm run build
+
+**Start Command**
+
+node build/server.js
