@@ -1,3 +1,7 @@
+###
+
+GET http://localhost:3333/ready
+Content-Type: application/json
 
 ###
 
