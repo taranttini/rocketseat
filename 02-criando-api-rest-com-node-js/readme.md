@@ -25,4 +25,9 @@ npm run knex -- migrate:latest
 npm run knex -- migrate:rollback
 
 npx vitest
+
 ```
+
+## tsup 
+
+ferramenta para fazer o build rápido do sistema

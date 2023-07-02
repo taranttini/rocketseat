@@ -15,5 +15,8 @@
     "formatWithErrors": false,
     "indentSize": 2,
     "lineWidth": 80
+  },
+  "files": {
+    "ignore": ["build/*.js"]
   }
 }
