@@ -14,8 +14,6 @@ app.get("/", async (request, reply) => {
   reply.status(200).send({ status: "ok" });
 });
 
-/*
 app.register(transactionRoutes, {
   prefix: "transactions",
 });
-*/
