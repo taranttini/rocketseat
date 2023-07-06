@@ -1,6 +1,9 @@
 @URL = http://localhost:3333
-@URL = http://localhost:3001
+#@URL = https://ignite-nodejs-02-api-1xme.onrender.com
+
 ###
+
+@SESSION = 0032267f-2ed4-4bb6-9313-2b9dc4b53b24
 
 GET {{URL}}/
 Content-Type: application/json
@@ -17,18 +20,18 @@ Content-Type: application/json
 
 ###
 
-GET {{URL}}/transactions/77eca52e-81e4-4f1b-9ad6-4b88d5bd08da
+GET {{URL}}/transactions/{{SESSION}}
 Content-Type: application/json
 
 ###
 
 GET {{URL}}/transactions/summary 
-Cookie: sessionId=bba98d32-cbf4-4159-9226-5e9e525187d4
+Cookie: sessionId={{SESSION}}
 
 ###
 
 curl "{{URL}}/transactions/summary" \
-    -H "Cookie: sessionId=bba98d32-cbf4-4159-9226-5e9e525187d4" \
+    -H "Cookie: sessionId={{SESSION}}" \
     -H "Content-Type: application/json" \
     -H "Connection: keep-alive" \
     --compressed
@@ -40,6 +43,6 @@ Content-Type: application/json
 
 {
     "title": "ola mundo",
-    "amount": 10,
+    "amount": 15,
     "type": "credit"
 }

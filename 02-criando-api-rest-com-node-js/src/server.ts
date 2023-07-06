@@ -1,8 +1,7 @@
 import { app } from "./app";
 import { env } from "./env";
 
-const port = env.PORT; //parseInt(process.env.PORT || "3001"); // env.PORT
-// render port 0.0.0.0
+const port = env.PORT;
 const host = "RENDER" in process.env ? "0.0.0.0" : "localhost";
 
 app

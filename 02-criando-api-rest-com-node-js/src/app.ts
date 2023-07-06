@@ -6,11 +6,11 @@ export const app = fastify();
 
 app.register(cookie);
 
-app.get("/healthz", async (request, reply) => {
+app.get("/healthz", async (_request, reply) => {
   reply.status(200).send({ status: "ok" });
 });
 
-app.get("/", async (request, reply) => {
+app.get("/", async (_request, reply) => {
   reply.status(200).send({ status: "ok" });
 });
 
