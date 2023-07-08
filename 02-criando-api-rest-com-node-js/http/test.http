@@ -2,6 +2,11 @@
 @URL = https://ignite-nodejs-02-api-1xme.onrender.com
 
 @SESSION = 6547bf74-65ae-45d8-ac72-cf110e66cb10
+#@SESSION = 08fa1a98-df52-412a-9fd9-fef914ee99ef
+#@SESSION = bba98d32-cbf4-4159-9226-5e9e525187d5
+#@SESSION = 91364d39-0be2-4ccf-b188-33cc6fe7296f
+#@SESSION = fecf6114-95d4-4ce4-9d61-26524278fd8a
+
 
 ###
 
@@ -13,20 +18,47 @@ Content-Type: application/json
 GET {{URL}}/healthz
 Content-Type: application/json
 
-###
 
+###
 GET {{URL}}/transactions
 Content-Type: application/json
+Cookie: sessionId={{SESSION}}
 
 ###
 
-GET {{URL}}/transactions/991d6b7b-8bd6-4b59-9430-8d257f16676b
+
+GET {{URL}}/transactions/b1e7acbf-2940-48e8-8a1f-7af9e0063733
 Content-Type: application/json
+Cookie: sessionId={{SESSION}}
 
 ###
 
 GET {{URL}}/transactions/summary 
 Cookie: sessionId={{SESSION}}
+
+###
+
+
+POST {{URL}}/transactions
+Content-Type: application/json
+#Cookie: sessionId={{SESSION}}
+
+{
+    "title": "ola mundo",
+    "amount": 5,
+    "type": "credit"
+}
+
+###
+###
+###
+
+
+curl -v --cookie "sessionId={{SESSION}}" \
+    -H "Content-Type: application/json" \
+    -H "Connection: keep-alive" \
+    "{{URL}}/transactions" \
+    --compressed
 
 ###
 
@@ -37,12 +69,3 @@ curl "{{URL}}/transactions/summary" \
     --compressed
 
 ###
-
-POST {{URL}}/transactions
-Content-Type: application/json
-
-{
-    "title": "ola mundo",
-    "amount": 10,
-    "type": "credit"
-}

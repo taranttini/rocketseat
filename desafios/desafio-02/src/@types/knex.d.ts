@@ -5,7 +5,9 @@ declare module "knex/types/tables" {
   interface Tables {
     users: {
       id: string;
-      name: string;
+      username: string;
+      password: string;
+      session_id: string;
       created_at: string;
     };
     diets: {
@@ -13,7 +15,8 @@ declare module "knex/types/tables" {
       description: string;
       is_diet_valid: boolean;
       created_at: string;
-      session_id?: string;
+      updated_at: string;
+      user_id: string;
     };
   }
 }

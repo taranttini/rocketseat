@@ -11,50 +11,81 @@ export async function userRoutes(app: FastifyInstance) {
 
   app.post("/", async (request, reply) => {
     const createUserBodySchema = z.object({
-      name: z.string(),
+      username: z.string(),
+      password: z.string(),
     });
 
-    const { name } = createUserBodySchema.parse(request.body);
+    const { username, password } = createUserBodySchema.parse(request.body);
 
-    let sessionId = request.cookies.sessionId;
+    const user = await knex("users")
+      .select("id", "username")
+      .where({ username })
+      .first();
 
-    if (!sessionId) {
-      sessionId = crypto.randomUUID();
-
-      const seven_days = 1000 * 60 * 60 * 24 * 7;
-
-      reply.cookie("sessionId", sessionId, {
-        path: "/",
-        maxAge: seven_days,
-      });
+    if (user) {
+      return reply.status(400).send({ error: "user already exists" });
     }
+
+    const sessionId = crypto.randomUUID();
+
+    const seven_days = 1000 * 60 * 60 * 24 * 7;
+
+    reply.cookie("sessionId", sessionId, {
+      path: "/",
+      maxAge: seven_days,
+    });
 
     await knex("users").insert({
       id: crypto.randomUUID(),
-      name,
+      session_id: sessionId,
+      username,
+      password,
     });
 
     return reply.status(201).send();
   });
 
-  app.get("/", { preHandler: [checkSessionIdExists] }, async (request) => {
-    const { sessionId } = request.cookies;
+  app.post("/login", {}, async (request, reply) => {
+    const createUserBodySchema = z.object({
+      username: z.string(),
+      password: z.string(),
+    });
 
-    const user = await knex("users").select();
+    const { username, password } = createUserBodySchema.parse(request.body);
+    console.log("a", username, password);
+
+    const sessionId = crypto.randomUUID();
+
+    const seven_days = 1000 * 60 * 60 * 24 * 7;
+
+    const user = await knex("users")
+      .select("id", "username")
+      .where({ username, password })
+      .first();
+
+    if (!user) {
+      return reply.status(401).send({ error: "login fail" });
+    }
+
+    reply.cookie("sessionId", sessionId, {
+      path: "/",
+      maxAge: seven_days,
+    });
+
+    await knex("users").where({ id: user.id }).update({
+      session_id: sessionId,
+    });
 
     return { user };
   });
 
-  app.get("/:id", { preHandler: [checkSessionIdExists] }, async (request) => {
+  app.get("/", { preHandler: [checkSessionIdExists] }, async (request) => {
     const sessionId = request.cookies.sessionId;
 
-    const getUserParamsSchema = z.object({
-      id: z.string().uuid(),
-    });
-
-    const { id } = getUserParamsSchema.parse(request.params);
-
-    const user = await knex("users").where({ id }).first();
+    const user = await knex("users")
+      .select("id", "username")
+      .where({ session_id: sessionId })
+      .first();
 
     return { user };
   });

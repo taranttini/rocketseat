@@ -1,6 +1,9 @@
 @URL = http://localhost:3333
 
-@SESSION = 6547bf74-65ae-45d8-ac72-cf110e66cb10
+
+@SESSION = c587fb19-fd8c-4daa-a133-1f02a3742671
+#@SESSION = f4ba697b-5a8c-4c74-badc-315210ebb9c3 
+#@SESSION = f4ba697b-5a8c-4c74-badc-315210ebb9c4
 
 ###
 
@@ -8,19 +11,78 @@ GET {{URL}}/
 Content-Type: application/json
 
 ###
-
-GET {{URL}}/healthz
+#
+# @name create_new_user
+POST {{URL}}/users
 Content-Type: application/json
 
-###
+{
+    "username": "lisa",
+    "password": "senha123"
+}
 
+###
+#
+# @name user_login
+POST {{URL}}/users/login
+Content-Type: application/json
+
+{
+    "username": "tarantini",
+    "password": "senha1234"
+}
+
+###
+#
+# @name get_user_logged
 GET {{URL}}/users
 Content-Type: application/json
+Cookie: sessionId={{SESSION}}
 
 ###
-
-GET {{URL}}/users/991d6b7b-8bd6-4b59-9430-8d257f16676b
+#
+# @name create_diet
+POST {{URL}}/diets
 Content-Type: application/json
+Cookie: sessionId={{SESSION}}
+
+{
+    "description":"salad",
+    "isDietValid": true
+}
+
+###
+#
+# @name get_diets
+GET {{URL}}/diets
+Content-Type: application/json
+Cookie: sessionId={{SESSION}}
+
+###
+#
+# @name get_diets_by_id
+GET {{URL}}/diets/3655fcee-6b43-498c-8bf9-00b7678b314e
+Content-Type: application/json
+Cookie: sessionId={{SESSION}}
+
+###
+#
+# @name edit_diets_by_id
+PUT {{URL}}/diets/3655fcee-6b43-498c-8bf9-00b7678b314e
+Content-Type: application/json
+Cookie: sessionId={{SESSION}}
+
+{
+    "description":"mc donalds",
+    "isDietValid": false
+}
+
+###
+#
+# @name delte_diets_by_id
+DELETE {{URL}}/diets/cecfa5d1-8bcc-46f7-9a0b-defd311c2898
+Content-Type: application/json
+Cookie: sessionId={{SESSION}}
 
 ###
 
@@ -37,9 +99,3 @@ curl "{{URL}}/users/summary" \
 
 ###
 
-POST {{URL}}/users
-Content-Type: application/json
-
-{
-    "name": "tarantini"
-}

@@ -50,3 +50,12 @@ node build/server.js
 Selecionar Advanced
 
 Adicionar variável de ambiente
+
+
+RENDER x FASTIFY
+
+https://github.com/render-examples/fastify-hello-world
+
+KNEX
+
+https://knexjs.org/guide/#configuration-options
