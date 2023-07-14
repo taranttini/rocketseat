@@ -130,6 +130,16 @@ export async function userRoutes(app: FastifyInstance) {
         .select("is_diet_valid")
         .where({ user_id: user.id });
 
+      const total_valid = await knex("diets")
+        .count("is_diet_valid as total_valid")
+        .where({ user_id: user.id, is_diet_valid: true });
+
+      const total_not_valid = await knex("diets")
+        .count("is_diet_valid", { as: "total_not_valid" })
+        .where({ user_id: user.id, is_diet_valid: false });
+
+      console.log(total_not_valid, total_valid);
+
       let actualSequence = 0;
       let bestSequence = 0;
 
