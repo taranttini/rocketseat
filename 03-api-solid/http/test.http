@@ -1,0 +1,9 @@
+@URL = http://localhost:3333
+
+###
+
+GET {{URL}}/
+Content-Type: application/json
+
+###
+
