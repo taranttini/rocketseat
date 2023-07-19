@@ -47,7 +47,15 @@ npm run star # para disponibilizar o site
 
 npx prisma init
 
-npx prisma generate
+npx prisma generate # gerar 
+
+npx prisma migrate dev # iniciar migração/executar
+
+npx prisma migrate dev --create-only # para criar novas migrations so o script
+
+npx prisma studio # para visualizar as tabelas
+
+npx prisma db push # para realizar a atualizacao do banco
 
 
 ✔ Your Prisma schema was created at prisma/schema.prisma       
@@ -64,8 +72,21 @@ https://pris.ly/d/getting-started
 
 # Docker
 
-docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRES_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgres
+```sh
+docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRES_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql:latest
+```
 
+```sh
+podman run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRES_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql:latest
+```
 # Podman
 
 podman machine init
+
+podman machine start
+
+podman machine set --rootful  # se precisar de super poder
+
+*configurar nas variaveis de ambiente a pasta dos binarios do podman-compose*
+
+C:\Users\__USER__\.local\share\containers\podman-desktop\extensions-storage\podman-desktop.compose\bin
