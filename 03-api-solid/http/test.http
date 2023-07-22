@@ -6,4 +6,13 @@ GET {{URL}}/
 Content-Type: application/json
 
 ###
+# @name create_user
+POST {{URL}}/users
+Content-Type: application/json
+
+{
+    "username": "teste2",
+    "email": "teste2@test.com",
+    "password": "123456"
+}
 

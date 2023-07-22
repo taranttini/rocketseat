@@ -27,7 +27,7 @@ Cookie: sessionId={{SESSION}}
 ###
 
 
-GET {{URL}}/transactions/b1e7acbf-2940-48e8-8a1f-7af9e0063733
+GET {{URL}}/transactions/3bf50320-674b-49ea-bbbf-b9a48e86f5b8
 Content-Type: application/json
 Cookie: sessionId={{SESSION}}
 
@@ -41,7 +41,7 @@ Cookie: sessionId={{SESSION}}
 
 POST {{URL}}/transactions
 Content-Type: application/json
-#Cookie: sessionId={{SESSION}}
+Cookie: sessionId={{SESSION}}
 
 {
     "title": "ola mundo",
