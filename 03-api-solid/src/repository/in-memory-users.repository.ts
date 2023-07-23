@@ -1,12 +1,17 @@
-import { Prisma } from "@prisma/client";
+import { IUsersRepository } from "./users-repository";
+import { Prisma, User } from "@prisma/client";
+import { GetResult } from "@prisma/client/runtime/library";
 
-export class InMemoryUsersRepository {
-  // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-  public users: any[] = [];
+export class InMemoryUsersRepository implements IUsersRepository {
+  findByEmail(email: String): Promise<User | null> {
+    throw new Error("Method not implemented.");
+  }
 
-  async create(data: Prisma.UserCreateInput) {
+  public users: Prisma.UserCreateInput[] = [];
+
+  async create(data: Prisma.UserCreateInput): Promise<User> {
     this.users.push(data);
-
-    return data;
+    const user = data as User;
+    return user;
   }
 }
