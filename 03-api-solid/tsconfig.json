@@ -4,6 +4,7 @@
     "paths": {
       "lib/*": ["src/lib/*"],
       "repository/*": ["src/repository/*"],
+      "errors/*": ["src/use-cases/errors/*"],
       "use-cases/*": ["src/use-cases/*"],
     },
     /* Visit https://aka.ms/tsconfig to read more about this file */
