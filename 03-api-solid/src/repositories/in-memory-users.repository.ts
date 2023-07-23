@@ -1,6 +1,5 @@
 import { IUsersRepository } from "./users-repository";
 import { Prisma, User } from "@prisma/client";
-import { GetResult } from "@prisma/client/runtime/library";
 
 export class InMemoryUsersRepository implements IUsersRepository {
   findByEmail(email: String): Promise<User | null> {

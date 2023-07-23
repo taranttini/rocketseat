@@ -1,7 +1,7 @@
 import { UserAlreadyExistsError } from "errors/user-already-exists-error";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { InMemoryUsersRepository } from "repository/in-memory-users.repository";
-import { PrismaUsersRepository } from "repository/prisma-users.repository";
+import { InMemoryUsersRepository } from "repositories/in-memory-users.repository";
+import { PrismaUsersRepository } from "repositories/prisma-users.repository";
 import { RegisterUseCase } from "use-cases/register";
 import { z } from "zod";
 

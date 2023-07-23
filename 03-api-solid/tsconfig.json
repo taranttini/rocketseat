@@ -3,9 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "lib/*": ["src/lib/*"],
-      "repository/*": ["src/repository/*"],
+      "repositories/*": ["src/repositories/*"],
       "errors/*": ["src/use-cases/errors/*"],
       "use-cases/*": ["src/use-cases/*"],
+      "@/*":["./src/*"]
     },
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
