@@ -62,9 +62,11 @@ describe("Register Use Case", () => {
         password: "123456",
       });
 
-    expect(testEmailValid()).resolves.not.toThrow();
+    await expect(testEmailValid()).resolves.not.toThrow();
 
-    expect(testEmailError()).rejects.toBeInstanceOf(UserAlreadyExistsError);
+    await expect(testEmailError()).rejects.toBeInstanceOf(
+      UserAlreadyExistsError,
+    );
   });
 
   // test("check if it works", () => { expect(2 + 2).toBe(4); });

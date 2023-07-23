@@ -13,4 +13,6 @@
 # Build
 **/build
 
+**/coverage
+
 !**/desafios/**/.env
