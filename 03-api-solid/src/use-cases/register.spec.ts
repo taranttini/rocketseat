@@ -1,30 +1,32 @@
 import { RegisterUseCase } from "./register";
 import { compare } from "bcryptjs";
+import { UserAlreadyExistsError } from "errors/user-already-exists-error";
 import { describe } from "node:test";
+import { InMemoryUsersRepository } from "repositories/in-memory/in-memory-users-repository";
 // import { PrismaUsersRepository } from "repositories/prisma-users.repository";
-import { expect, it, test } from "vitest";
+import { expect, it } from "vitest";
 
 describe("Register Use Case", () => {
-  it("should hash user password upon registration", async () => {
-    // simular integrado
-    // const prismaUsersRepository = new PrismaUsersRepository();
-    // const registerUseCase = new RegisterUseCase(prismaUsersRepository);
+  it("should be able to register", async () => {
+    const usersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(usersRepository);
 
-    // simular fake test
-    const registerUseCase = new RegisterUseCase({
-      async findByEmail(email) {
-        return null;
-      },
-      async create(data) {
-        return {
-          id: "user-1",
-          username: data.username,
-          email: data.email,
-          password_hash: data.password_hash,
-          created_at: new Date(),
-        };
-      },
+    const { user } = await registerUseCase.execute({
+      username: "monalisa",
+      email: "monalista@teste.com",
+      password: "123456",
     });
+
+    expect(user.id).toEqual(expect.any(String)); // seja a qualquer string
+    expect(user.id).not.toBeNull(); // nao pode ser null
+  });
+
+  it("should hash user password upon registration", async () => {
+    // simular integrado com banco
+    // const usersRepository = new PrismaUsersRepository();
+    // simular com dados em memoria
+    const usersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(usersRepository);
 
     const { user } = await registerUseCase.execute({
       username: "monalisa",
@@ -38,6 +40,31 @@ describe("Register Use Case", () => {
     );
 
     expect(isPasswordCorrecltyHashed).toBe(true);
+  });
+
+  it("should not be able to register with same email twice", async () => {
+    const usersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(usersRepository);
+
+    const email = "monalista@teste.com";
+
+    const testEmailValid = async () =>
+      await registerUseCase.execute({
+        username: "monalisa-1",
+        email,
+        password: "123456",
+      });
+
+    const testEmailError = async () =>
+      await registerUseCase.execute({
+        username: "monalisa-2",
+        email,
+        password: "123456",
+      });
+
+    expect(testEmailValid()).resolves.not.toThrow();
+
+    expect(testEmailError()).rejects.toBeInstanceOf(UserAlreadyExistsError);
   });
 
   // test("check if it works", () => { expect(2 + 2).toBe(4); });
