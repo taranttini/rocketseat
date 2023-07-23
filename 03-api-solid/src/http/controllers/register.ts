@@ -1,5 +1,5 @@
-import { registerUseCase } from "../../use-cases/register";
 import { FastifyReply, FastifyRequest } from "fastify";
+import { registerUseCase } from "use-cases/register";
 import { z } from "zod";
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
