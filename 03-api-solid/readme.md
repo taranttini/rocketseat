@@ -90,3 +90,10 @@ podman machine set --rootful  # se precisar de super poder
 *configurar nas variaveis de ambiente a pasta dos binarios do podman-compose*
 
 C:\Users\__USER__\.local\share\containers\podman-desktop\extensions-storage\podman-desktop.compose\bin
+
+
+### Práticas
+
+SOLID
+
+D - Dependency Inversion Principle
