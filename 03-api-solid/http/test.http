@@ -16,3 +16,12 @@ Content-Type: application/json
     "password": "123456"
 }
 
+###
+# @name login_user
+POST {{URL}}/sessions
+Content-Type: application/json
+
+{
+    "email": "teste8@test.com",
+    "password": "123456"
+}
