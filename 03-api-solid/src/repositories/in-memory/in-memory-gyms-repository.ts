@@ -1,5 +1,6 @@
 import { IGymsRepository } from "../gyms-repository";
 import { Gym, Prisma } from "@prisma/client";
+import { GetResult } from "@prisma/client/runtime/library";
 import { randomUUID } from "node:crypto";
 
 export class InMemoryGymsRepository implements IGymsRepository {
@@ -13,6 +14,12 @@ export class InMemoryGymsRepository implements IGymsRepository {
     }
 
     return gym;
+  }
+
+  async serchMany(query: string, page: number) {
+    return this.items
+      .filter((q) => q.title.includes(query))
+      .slice((page - 1) * 20, page * 20);
   }
 
   async create(data: Prisma.GymCreateInput): Promise<Gym> {
