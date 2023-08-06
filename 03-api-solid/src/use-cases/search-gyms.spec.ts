@@ -14,7 +14,7 @@ describe("Search Gyms Use Case", () => {
   });
 
   it("should be able to fetch check-in history ", async () => {
-    gymsRepository.create({
+    await gymsRepository.create({
       title: "TypeScript Gym",
       description: null,
       phone: null,
@@ -22,7 +22,7 @@ describe("Search Gyms Use Case", () => {
       longitude: -49.6401091,
     });
 
-    gymsRepository.create({
+    await gymsRepository.create({
       title: "JavaScript Gym",
       description: null,
       phone: null,
@@ -30,7 +30,7 @@ describe("Search Gyms Use Case", () => {
       longitude: -49.6401091,
     });
 
-    gymsRepository.create({
+    await gymsRepository.create({
       title: "JavaScript Advanced Gym",
       description: null,
       phone: null,
@@ -67,8 +67,8 @@ describe("Search Gyms Use Case", () => {
     });
 
     expect(gyms).toEqual([
-      expect.objectContaining({ gym_id: "JavaScript Gym 21" }),
-      expect.objectContaining({ gym_id: "JavaScript Gym 22" }),
+      expect.objectContaining({ title: "JavaScript Gym 21" }),
+      expect.objectContaining({ title: "JavaScript Gym 22" }),
     ]);
   });
 });
