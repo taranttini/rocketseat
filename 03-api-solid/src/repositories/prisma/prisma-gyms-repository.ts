@@ -1,19 +1,20 @@
-await import { Gym, Prisma } from "@prisma/client";
-import { Decimal, GetResult } from "@prisma/client/runtime/library";
+import { Gym, Prisma } from "@prisma/client";
 import { prisma } from "lib/prisma";
-import { IFindManyNearbyParams, IGymsRepository } from "repositories/gyms-repository";
+import {
+  IFindManyNearbyParams,
+  IGymsRepository,
+} from "repositories/gyms-repository";
 
 export class PrismaGymsRepository implements IGymsRepository {
-
-    async findById(id: string)  {
-        return await prisma.gym.findUnique({
-            where: {
-                id
-            },
-        });
-    }
-    async findManyNearby({userLatitude, userLongitude}: IFindManyNearbyParams)  {
-        return await prisma.$queryRaw<Gym[]>`
+  async findById(id: string) {
+    return await prisma.gym.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+  async findManyNearby({ userLatitude, userLongitude }: IFindManyNearbyParams) {
+    return await prisma.$queryRaw<Gym[]>`
             SELECT * FROM gyms
             WHERE (
                 6371 *
@@ -25,20 +26,19 @@ export class PrismaGymsRepository implements IGymsRepository {
                 )
             ) <= 10
         `;
-    }
-    async create(data: Prisma.GymCreateInput)  {
-        return await prisma.gym.create({data});
-    }
-    async serchMany(query: string, page: number)  {
-        return await prisma.gym.findMany({
-            where: {
-                title: {
-                    contains: query
-                }
-            },
-            take: 20,
-            skip: (page - 1) * 20,
-        });
-    }
-
+  }
+  async create(data: Prisma.GymCreateInput) {
+    return await prisma.gym.create({ data });
+  }
+  async serchMany(query: string, page: number) {
+    return await prisma.gym.findMany({
+      where: {
+        title: {
+          contains: query,
+        },
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    });
+  }
 }

@@ -1,16 +1,16 @@
-import { SearchGymUseCase } from "./serach-gyms";
+import { SearchGymsUseCase } from "./search-gyms";
 import { describe } from "node:test";
 import { InMemoryCheckInsRepository } from "repositories/in-memory/in-memory-check-ins-repository";
 import { InMemoryGymsRepository } from "repositories/in-memory/in-memory-gyms-repository";
 import { beforeEach, expect, it } from "vitest";
 
 let gymsRepository: InMemoryGymsRepository;
-let sut: SearchGymUseCase;
+let sut: SearchGymsUseCase;
 
 describe("Search Gyms Use Case", () => {
   beforeEach(() => {
     gymsRepository = new InMemoryGymsRepository();
-    sut = new SearchGymUseCase(gymsRepository);
+    sut = new SearchGymsUseCase(gymsRepository);
   });
 
   it("should be able to fetch check-in history ", async () => {
