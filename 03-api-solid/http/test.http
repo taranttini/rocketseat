@@ -25,3 +25,9 @@ Content-Type: application/json
     "email": "teste9@test.com",
     "password": "123456"
 }
+
+###
+# @name profile
+GET {{URL}}/me
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NjYwMjZiNy02ZjhhLTQyMjMtYjZiNy01Y2IwMzFhYmFjYjQiLCJpYXQiOjE2OTY1NTkyNTB9.-vNnlK8rgT3WNYH9AakB9WpugPfEdmcuG3TGMzKlND4
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NjYwMjZiNy02ZjhhLTQyMjMtYjZiNy01Y2IwMzFhYmFjYjQiLCJpYXQiOjE2OTY1NTYwMDN9.HdVC_3xpXQd0oqWXatJqBPK3SpNgMmwGVtmCsW6YzI0
