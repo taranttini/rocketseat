@@ -97,3 +97,28 @@ C:\Users\__USER__\.local\share\containers\podman-desktop\extensions-storage\podm
 SOLID
 
 D - Dependency Inversion Principle
+
+JWT: JSON Web Token
+
+Usuário faz login, envia e-mail/senha, o backend cria um token ÚNICO, não modificável e STATLESS.
+
+Stateless: Não armazendado em nenhuma estrutura de persistência de dados;
+
+Backend: Quando vai criar o token ele usa uma PALAVRA-CHAVE (string)
+
+Palavra-chave: kawabanga-master-blaster
+
+E-mail/senha -> header.payload.sing
+
+
+**acessar a pasta do prisma/vitest-environment-prisma**
+
+`npm link`
+
+ele vai criar um link do pacote fake
+
+**acessar a pasta do raiz do projeto**
+
+`npm link vitest-environment-prisma`
+
+ele vai instalar o nosso pacote fake
